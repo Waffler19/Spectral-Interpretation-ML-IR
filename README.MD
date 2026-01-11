@@ -7,33 +7,30 @@ For Example the IR absorbance spectra for n-butanol shows a number of useful fea
 
 Specifically, the sharp peak at ~3500 cm^-1 corresponds to the O-H stretch of the alcohol and the broad peaks at ~3000 cm^-1 correspond to the CH stretches. Note that a functional group is a multi-label classifier (ie. one compounds IR spectra often can indicate the presence of multiple functional groups). 
 
-## 1. Data Collection 
+## Data Collection 
 
-In order to train a ML model to recognize these IR features and map them to functional groups we need a basis set of chemical systems and functional groups of interest. To limit the scope of and computational cost of this project we will focus on small organic molecules (less than 25 atoms of just C,N,H,O,Cl, Br). We will also focus on the following functional groups (C-H, C=C, C≡C, C≡N, C-OH, C=O, C=OOH, N-H). 
+In order to train a ML model to recognize these IR features and map them to functional groups we need a basis set of chemical systems and functional groups of interest. To limit the scope of and computational cost of this project we will focus on small organic molecules (less than 25 atoms of just C,N,H,O,Cl, Br). We will also focus on the following functional groups (C-H, C=C, C≡C, C≡C-H C≡N, C-OH, C=O, C=OOH, and N-H). 
 
-Another issue is the lack of mass-downloadable data for IR Spectra, meaning that digitized spectra will have to be downloaded manually from the NIST webbook. As such, 50 Spectra were specifically chosen to form the training set (and accurately capture the functional gropups of interest). These spectra include 40 Systems with only one main functional group (and C-H) and 10 that mix different functional groups together. An additional 10 spectra will be used as a test set to assess model accuracy. 
+Another issue is the lack of mass-downloadable data for IR Spectra, meaning that digitized spectra will have to be downloaded manually from the NIST webbook. As such, 100 Spectra were specifically chosen to form the training set (and accurately capture the functional gropups of interest). These spectra include 40 Systems with only one main functional group (and C-H) and 10 that mix different functional groups together. An additional 10 spectra will be used as a test set to assess model accuracy. 
 
-### Individual Functional Groups (40):
-| C-H | -OH | COOH | H-C=O/C-C=O | C=C | C≡C | C≡N | N-H |
-| ------- |  ------- | ---------- | ----------------- | ------- | ------- |------ | ------ |
-| Methane | Methanol | Formic Acid | AcetylAcetone | Ethene | Prop-1-yne | Acetonitrile | Propylamine |
-| Ethane | Ethanol | Ethanoic Acid | Acetaldehyde | But-1-ene | 2-Butyne | 2-methylpropanenitrile |  | cyclohexylamine|
-| Butane | Butanol | Butanoic Acid | Acetone | Hex-3-ene | Pent-1-yne | pentanenitrile | Methylamine |
-| Hexane | Hexanol | Hexanoic Acid | Butan-2-one | Hexene | Hex-2-yne | cyclopentylcyanide | Ethylamine |
-| Heptane | Octanol | Octanoic Acid | 3-Pentanone | Oct-2-ene |  3-methylbut-1-yne | propanenitrile | Hexylamine |
+For more information about this project please refer to the project_report.pdf which contains related figures, tables, and text regarding different model performances, implementation details, and general discussion. 
 
-### Mixed Functional Groups (10):
-| Compound Name | Functional Groups |
-| --------------| ------------------|
-| Glycine | N-H, C=OOH |
-| 2-cyclohexen-1-ol | C=C, C-OH |
-| 2-(ethylamino)ethan-1-ol | N-H, C-OH |
-| methallyl alcohol | C=C, C-OH |
-| Acrylonitrile | C=C, C≡N |
-| but-3-en-2-one | C=C, C=O |
-| but-3-yn-2-one | C≡C, C=O |
-| 2-butynoic acid | C≡C, C=OOH |
-| formamide | N-H, C=O |
+## File Descriptions
+
+This repository contains three codes: "load.ipynb", "project_implementation", and "spectrum_interpret.py". 
+
+"load.ipynb" contains the code necessary to convert *.JCAMP files into the csv file "Full_File.csv" including normalization and interpolation to bin energy values. 
+
+"project_implementation" is a jupyter notebook showing the data science machine learning pipeline used to conduct this study as well as an assortment of tables and figures including correlation analysis, performance scores, and importance features. 
+
+"spectrum_interpret.py" is an object oriented version of the project allowing users more control over which models to fit and data to load. This code can be imported and lets you use my machine learning visualization and fitting approach on your own IR absorbance spectra. 
+
+## Dependencies
+- Python 3.x
+- Jupyter Notebook
+- Sci-Kit Learn 
+- Scipy 
+
 
 All data are sourced from NIST Webbook: https://webbook.nist.gov/chemistry/
 
